@@ -1,6 +1,32 @@
 {
-    "starting_year": 1000,
-    "metrics": {
-        "population": 100
+  "startingYear": 1000,
+  "metrics": {
+    "population": {
+      "value": 1000,
+      "velocity": 10,
+      "acceleration": 21
     }
+  },
+  "events": [
+    {
+      "name": "Thanos Power",
+      "description": "Too much in the universe...</br>I will delete half the population !",
+      "image": "https://media.gqmagazine.fr/photos/5e183bb99e475600085b06e9/16:9/w_1280,c_limit/thanos-bebe-marvel.jpg",
+      "trigger": {
+        "population": [2000, null]
+      },
+      "left": {
+        "name": "Kill half",
+        "consequences": {
+          "population": {
+            "value": "x/2"
+          }
+        }
+      },
+      "right": {
+        "name": "Do nothing",
+        "consequences": {}
+      }
+    }
+  ]
 }
