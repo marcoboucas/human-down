@@ -9,7 +9,7 @@ METRICS = {}
 
 yearIntervalTime = 400;
 yearInterval = 1;
-maxYear = 1040;
+maxYear = 1020;
 
 const loadData = () => {
     fetch("data.json").then((result) => result.json()).then((data) => {
@@ -92,6 +92,10 @@ const endEvent = () => {
     updateYear()
 }
 
+const endGame = (win) => {
+    console.log('End game !')
+    changeMessage(`Game over ! you have ${win ? "won !" : "lost ..."}`);
+}
 const triggerEvents = () => {
     // We check if one event can be triggered
     for (let eventIndex = 0; eventIndex < AVAILABLE_EVENTS.length; eventIndex += 1) {
@@ -114,10 +118,13 @@ const triggerEvents = () => {
 
 
 const updateYear = () => {
-    console.info('try to update the year')
     if (!CURRENT_YEAR || CURRENT_YEAR > maxYear) {
+        if (CURRENT_YEAR > maxYear) {
+            endGame(true);
+        }
         return;
     }
+    
     // Display the current year
     changeMessage("Current Year: " + CURRENT_YEAR);
 
