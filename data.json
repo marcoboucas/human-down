@@ -2,9 +2,30 @@
   "startingYear": 1000,
   "metrics": {
     "population": {
-      "value": 1000,
+      "color": "#ff0000",
+      "value": 7000,
       "velocity": 10,
-      "acceleration": 21
+      "acceleration": 0.01
+    },
+    "pollution": {
+      "color": "#00ff00",
+      "value": 0,
+      "velocity": 0,
+      "acceleration": 1
+    }
+  },
+  "risks":{
+    "overpopulation":{
+      "name": "Overpopulation",
+      "description": "Too Many people on Earth, we are now doomed ...",
+      "function": "population/12000",
+      "color": "#ff0000"
+    },
+    "climateChange":{
+      "name": "Climate Change",
+      "description": "The Earth is broken ... because of us...",
+      "function": "pollution/(population+10)*10",
+      "color": "#00ff00"
     }
   },
   "events": [
@@ -13,13 +34,55 @@
       "description": "Too much in the universe...</br>I will delete half the population !",
       "image": "https://media.gqmagazine.fr/photos/5e183bb99e475600085b06e9/16:9/w_1280,c_limit/thanos-bebe-marvel.jpg",
       "trigger": {
-        "population": [2000, null]
+        "population": [10000, null]
       },
       "left": {
         "name": "Kill half",
         "consequences": {
           "population": {
-            "value": "x/2"
+            "value": "population/2"
+          }
+        }
+      },
+      "right": {
+        "name": "Do nothing",
+        "consequences": {}
+      }
+    },
+    {
+      "name": "More Meat industry",
+      "description": "We want more meat",
+      "image": "https://media.gqmagazine.fr/photos/5e183bb99e475600085b06e9/16:9/w_1280,c_limit/thanos-bebe-marvel.jpg",
+      "trigger": {
+        "population": [8000, null]
+      },
+      "left": {
+        "name": "More Meat",
+        "consequences": {
+          "population": {
+            "velocity": "population_velocity/10",
+            "acceleration": "population_acceleration/10"
+          }
+        }
+      },
+      "right": {
+        "name": "Do nothing",
+        "consequences": {}
+      }
+    },
+    {
+      "name": "Green Energy",
+      "description": "Green Energy",
+      "image": "https://media.gqmagazine.fr/photos/5e183bb99e475600085b06e9/16:9/w_1280,c_limit/thanos-bebe-marvel.jpg",
+      "trigger": {
+        "pollution": [400, null]
+      },
+      "left": {
+        "name": "More Green Energy",
+        "consequences": {
+          "pollution": {
+            "velocity": "pollution_velocity/10",
+            "acceleration": "-pollution_acceleration"
           }
         }
       },
